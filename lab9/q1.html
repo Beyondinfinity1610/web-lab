@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <p id="count">
+
+        </p>
+ 
+    
+    <table border="2" cellspacing="0" cellpadding="5">
+        <th>Temparature Recordings</th>
+        <th>Categories</th>
+        <tbody id="tablebody"></tbody>
+
+
+    </table>
+</center>
+</body>
+<script>
+    let hc=0
+    let pc=0
+    let cc=0
+    const temps=[55,62,68,74,59,45,41,58,60,67,65,78,82,88,91,92,90,93,87,80,78,79,72,68,61,59,55,65];
+    const table=document.getElementById("tablebody")
+
+    temps.map((idx,item) =>(
+        console.log(idx,item)
+    ))
+    temps.forEach(temp =>{
+        let cat="cold"
+        if(temp>=85){
+            cat="HOT"
+            hc=hc+1
+        }
+        if(temp>=60 && temp<85){
+            cat="Plesant"
+            pc=pc+1
+        }
+        
+        table.innerHTML+=`<tr><td>${temp}</td><td>${cat}</td></tr>`
+    })
+    cc=temps.length - hc - pc
+    document.getElementById("count").innerHTML=`Hot Count: ${hc} &nbsp Pleasant Count : ${pc} &nbsp  Cold Count: ${cc}`
+</script>
+</html>

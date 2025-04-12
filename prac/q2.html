@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG Shape Drawer</title>
+  <style>
+    @keyframes updown {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(100px) scale(1.1);
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    #ani {
+      animation: updown 2s infinite;
+      transform-origin: center;
+    }
+  </style>
+</head>
+<body>
+  <select id="shape">
+    <optgroup label="Shapes">
+      <option value="circle">Circle</option>
+      <option value="rectangle">Rectangle</option>
+      <option value="square">Square</option>
+    </optgroup>
+  </select>
+  <button onclick="draw()">Draw</button>
+
+  <svg height="500" width="500" id="board" style="border:1px solid black;"></svg>
+            <circle cx="100" cy="100" r="50" fill="blue" id="ani" />
+  <script>
+    function draw() {
+      let s = document.getElementById("shape").value;
+      let b = document.getElementById("board");
+      b.innerHTML = ""; // Clear previous drawings
+
+      if (s === "circle") {
+        b.innerHTML = `<circle cx="100" cy="100" r="50" fill="blue" id="ani" />`;
+      } else if (s === "rectangle") {
+        b.innerHTML = `<rect x="50" y="50" width="150" height="100" fill="green" />`;
+      } else if (s === "square") {
+        b.innerHTML = `<rect x="50" y="50" width="100" height="100" fill="purple" />`;
+      }
+    }
+  </script>
+</body>
+</html>

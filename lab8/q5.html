@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="Name" style="border: 1px solid black; width: 400px; text-align: center; padding: 10px;color: red;"></p>
+</body>
+<script>
+    let regno = prompt("Enter reg no");
+    let name = prompt("Enter Name");
+
+    document.write(`<p style="border: 2px solid red; text-align: center; padding: 10px; border-width:10px; width: 400px;">${regno}</p>`);
+
+    document.getElementById("Name").innerHTML = `*${name}*`;
+</script>
+</html>

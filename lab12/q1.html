@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Animation Fix</title>
+</head>
+<body>
+    <canvas id="c" height="350" width="500" style="border: 2px dotted black;"></canvas>
+</body>
+<script>
+   const canvas = document.getElementById('c');
+    const ctx = canvas.getContext('2d');
+    
+    ctx.beginPath(); // Start a new path
+    ctx.ellipse(210, 166, 102, 50, 0, 0, 2 * Math.PI); // Define the ellipse
+    ctx.fillStyle = 'lightblue';
+    ctx.fill(); // Fill the ellipse
+    ctx.strokeStyle = 'blue'; // Set stroke color
+    ctx.stroke(); 
+
+    let boatspeed = 2;
+    let boatulx = 187;
+    let boatur = 243;
+    let boatll = 200;
+    let boatlr = 230;
+
+    function drawScene() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Water
+        ctx.beginPath();
+        ctx.ellipse(210, 166, 102, 50, 0, 0, 2 * Math.PI);
+        ctx.fillStyle = 'lightblue';
+        ctx.fill();
+        ctx.strokeStyle = 'blue';
+        ctx.stroke();
+
+        // Boat
+        boatulx += boatspeed;
+        boatur += boatspeed;
+        boatll += boatspeed;
+        boatlr += boatspeed;
+
+        if (boatur > 310 || boatulx < 100) {
+            boatspeed *= -1;
+        }
+
+        ctx.beginPath();
+        ctx.moveTo(boatulx, 149);
+        ctx.lineTo(boatur, 149);
+        ctx.lineTo(boatlr, 160);
+        ctx.lineTo(boatll, 160);
+        ctx.closePath();
+        ctx.fillStyle = 'brown';
+        ctx.fill();
+        ctx.strokeStyle = 'black';
+        ctx.stroke();
+        
+        // House
+        ctx.beginPath();
+        ctx.fillStyle = 'orange';
+        ctx.fillRect(20, 144, 70, 90);
+        ctx.strokeStyle = 'black';
+        ctx.strokeRect(20, 144, 70, 90);
+
+        ctx.beginPath();
+        ctx.fillStyle = 'red';
+        ctx.moveTo(20, 144);
+        ctx.lineTo(55, 100);
+        ctx.lineTo(90, 144);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(30, 164, 20, 20);
+        ctx.strokeStyle = 'black';
+        ctx.strokeRect(30, 164, 20, 20);
+
+        ctx.beginPath();
+        ctx.fillStyle = 'green';
+        ctx.fillRect(45, 194, 20, 40);
+        ctx.strokeStyle = 'black';
+        ctx.strokeRect(45, 194, 20, 40);
+
+        // Trees
+        ctx.beginPath();
+        ctx.arc(65, 274, 15, 0, 2 * Math.PI);
+        ctx.fillStyle = 'grey';
+        ctx.fill();
+        ctx.strokeStyle = 'blue';
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(83, 285, 10, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(100, 270, 15, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.stroke();
+
+        // Sun
+        ctx.beginPath();
+        ctx.arc(285, 270, 20, 0, 2 * Math.PI);
+        ctx.fillStyle = 'yellow';
+        ctx.fill();
+        ctx.strokeStyle = 'black';
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(300, 250, 15, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(315,245);
+        ctx.lineTo(335, 250);
+        ctx.lineTo(310, 255);
+        ctx.fillStyle = 'orange';
+        ctx.fill();
+        
+
+
+        // Bird
+        ctx.beginPath();
+        ctx.moveTo(400, 250);
+        ctx.quadraticCurveTo(360, 230, 400, 200);
+        ctx.fillStyle = 'pink';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.moveTo(400, 200);
+        ctx.bezierCurveTo(430, 180, 450, 180, 450, 200);
+        ctx.fill();
+    }
+
+    function animate() {
+        drawScene();
+        requestAnimationFrame(animate);
+    }
+
+    
+    
+
+    animate();
+</script>
+</html>

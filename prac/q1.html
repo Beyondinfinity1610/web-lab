@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Game</title>
+</head>
+<body>
+  <canvas height="500" width="500" id="board" tabindex="0"></canvas>
+</body>
+<script>
+  let canvas = document.getElementById("board");
+  let context = canvas.getContet('2d');
+  let x = 100;
+  let y = 100;canvas.focus(); // Set focus to the canvas
+
+  function drawcar(a, b) {
+    x += a;
+    y += b;
+
+    // Clear canvas before drawing again
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw car
+    context.context.beginPath();
+    context.rect(x, y, width, height);
+    
+    
+    
+  }
+
+  // Listen to keyboard input from the whole page
+  document.addEventListener('keydown', (e) => {
+    if (e.key === "ArrowUp") {
+      drawcar(0, -10);
+    } else if (e.key === "ArrowDown") {
+      drawcar(0, 10);
+    } else if (e.key === "ArrowLeft") {
+      drawcar(-10, 0);
+    } else if (e.key === "ArrowRight") {
+      drawcar(10, 0);
+    }
+  });
+
+  // Initial draw
+  drawcar(0, 0);
+</script>
+</html>

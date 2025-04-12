@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boarding Pass</title>
+</head>
+<body>
+    <div style="border: 2px solid black; padding: 10px; width: 300px;">
+        <center><h1>BOARDING PASS</h1></center>
+        <h2 id="name">NAME: &nbsp;</h2>
+        <h2 id="seat">SEAT NO: &nbsp;</h2>
+        <h2 id="class">CLASS: &nbsp;</h2>
+    </div>
+    
+</body>
+<script>
+    let seats = [0,0,0,0,0,0,0,0,0,0];  
+    let a = prompt("Enter type (1 for First Class, 2 for Economy)");  
+    let na = prompt("Enter Name");  
+    let n = document.getElementById("name");  
+    let s = document.getElementById("seat");  
+    let c = document.getElementById("class");  
+    let assigned = false;  
+
+    if (a === '1') {
+        let found = false;
+        for (let i = 0; i < 5; i++) {
+            if (seats[i] === 0) {
+                seats[i] = 1;
+                s.innerHTML += `${i+1}`;
+                c.innerHTML += `FIRST`;
+                n.innerHTML += `${na}`;
+                found = true;
+                assigned = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            for (let i = 5; i < 10; i++) {
+                if (seats[i] === 0) {
+                    seats[i] = 1;
+                    s.innerHTML += `${i+1}`;
+                    c.innerHTML += `Economy`;
+                    n.innerHTML += `${na}`;
+                    assigned = true;
+                    break;
+                }
+            }
+        }
+    }
+
+    if (a === '2') {
+        let found = false;
+        for (let i = 5; i < 10; i++) {
+            if (seats[i] === 0) {
+                seats[i] = 1;
+                s.innerHTML += `${i+1}`;
+                c.innerHTML += `Economy`;
+                n.innerHTML += `${na}`;
+                found = true;
+                assigned = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            for (let i = 0; i < 5; i++) {
+                if (seats[i] === 0) {
+                    seats[i] = 1;
+                    s.innerHTML += `${i+1}`;
+                    c.innerHTML += `First`;
+                    n.innerHTML += `${na}`;
+                    assigned = true;
+                    break;
+                }
+            }
+        }
+    }
+
+    if (!assigned) {
+        alert("No available seats.");
+    } 
+</script>
+</html>

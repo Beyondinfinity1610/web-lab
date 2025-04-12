@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+</head>
+<body>
+    <p id="display"><span id="min">00</span>:<span id="sec">00</span></p>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <button id="reset">Reset</button>
+</body>
+<script>
+    let sec = 0, min = 0, interval = null;
+    const secSpan = document.getElementById('sec');
+    const minSpan = document.getElementById('min');
+
+    function updateDisplay() {
+        secSpan.innerText = String(sec).padStart(2, '0');
+        minSpan.innerText = String(min).padStart(2, '0');
+    }
+
+    document.getElementById('start').addEventListener('click', () => {
+        if (interval) return; 
+        interval = setInterval(() => {
+            sec++;
+            if (sec === 60) {
+                sec = 0;
+                min++;
+            }
+            updateDisplay();
+        }, 1000);
+    });
+
+    document.getElementById('stop').addEventListener('click', () => {
+        clearInterval(interval);
+        interval = null;
+    });
+
+    document.getElementById('reset').addEventListener('click', () => {
+        clearInterval(interval);
+        interval = null;
+        sec = 0;
+        min = 0;
+        updateDisplay();
+    });
+
+    updateDisplay(); 
+</script>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+</head>
+<body>
+    <form>
+        <fieldset>
+            <legend><font color="red">Personal Details</font></legend>
+            
+            <label>Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
+            <input type="text" name="name">
+            <br><br>
+            
+            <label>Password &nbsp;&nbsp;&nbsp;&nbsp;: </label>
+            <input type="password" name="password">
+            <br><br>
+            
+            <label>E-mail Id &nbsp;&nbsp;&nbsp;&nbsp;: </label>
+            <input type="email" name="email">
+            <br><br>
+            
+            <label>Gender &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
+            <input type="radio" name="gender" value="male" id="male">
+            <label for="male">Male</label>
+            &nbsp;&nbsp;
+            <input type="radio" name="gender" value="female" id="female" checked>
+            <label for="female">Female</label>
+            <br><br>
+            
+            <label>DOB &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
+            <input type="text" name="dob" placeholder="mm/dd/yyyy">
+            <br><br>
+            
+            <label>Mobile# &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
+            <input type="text" name="mobile">
+        </fieldset>
+
+        <fieldset>
+            <legend><font   color="red">Educational Qualification</font></legend>
+            
+            <label>Degree &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
+            <select name="degree">
+                <option value="">-- Select Group --</option>
+                <optgroup label="UG">
+                    <option value="be">BE</option>
+                    <option value="btech">BTech</option>
+                    <option value="bsc">BSc</option>
+                    <option value="ba">BA</option>
+                    <option value="bca">BCA</option>
+                    <option value="bba">BBA</option>
+                    <option value="ug-others">Others</option>
+                </optgroup>
+                <optgroup label="PG">
+                    <option value="me">ME</option>
+                    <option value="mtech">MTech</option>
+                    <option value="msc">MSc</option>
+                    <option value="ma">MA</option>
+                    <option value="mca">MCA</option>
+                    <option value="mba">MBA</option>
+                    <option value="pg-others">Others</option>
+                </optgroup>
+                <optgroup label="PhD">
+                    <option value="phd-engineering">Engineering</option>
+                    <option value="phd-science">Science</option>
+                    <option value="phd-management">Management</option>
+                    <option value="phd-others">Others</option>
+                </optgroup>
+            </select>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <label>Engineering: </label>
+            <select name="engineering">
+                <option value="">Select Group</option>
+                <option value="cse">CSE</option>
+                <option value="ece">ECE</option>
+                <option value="eee">EEE</option>
+                <option value="civil">CIVIL</option>
+                <option value="mech">MECH</option>
+            </select>
+            <br><br>
+        </fieldset>
+        <br><br>
+            <label>Hobbies &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
+            <input type="checkbox" name="hobbies" value="chess">
+            <label>Playing chess</label>
+            &nbsp;&nbsp;
+            <input type="checkbox" name="hobbies" value="books">
+            <label>Reading Books</label>
+            <br><br>
+            
+            <label>Favourite Color: </label>
+            <input type="color" name="color">
+            <br><br>
+       
+
+        <fieldset>
+            <legend><font color="red">Address</font></legend>
+            <textarea name="address" rows="4" cols="50"></textarea>
+        </fieldset>
+
+        <br>
+        <label>Attach Resume: </label>
+        &nbsp;&nbsp;
+        <input type="file" name="resume">
+        &nbsp;&nbsp;
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
