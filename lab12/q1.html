@@ -107,30 +107,30 @@
     function createDuck() {
       // Body (circle)
       graphicsContext.beginPath();
-      graphicsContext.arc(650 - 50, 450, 25, 0, Math.PI * 2); // Body circle using arc
+      graphicsContext.arc(600, 450, 25, 0, Math.PI * 2); // Body circle using arc
       graphicsContext.fillStyle = "yellow";
       graphicsContext.fill();
       graphicsContext.stroke();
 
       // Head (circle)
       graphicsContext.beginPath();
-      graphicsContext.arc(650 - 50, 440, 15, 0, Math.PI * 2); // Head circle using arc
+      graphicsContext.arc(625, 430, 15, 0, Math.PI * 2); // Head circle using arc
       graphicsContext.fillStyle = "yellow";
       graphicsContext.fill();
       graphicsContext.stroke();
 
       // Eye (small circle)
       graphicsContext.beginPath();
-      graphicsContext.arc(655 - 50, 438, 3, 0, Math.PI * 2); // Eye circle using arc
+      graphicsContext.arc(630, 425, 3, 0, Math.PI * 2); // Eye circle using arc
       graphicsContext.fillStyle = "black";
       graphicsContext.fill();
       graphicsContext.stroke();
 
       // Beak (triangle)
       graphicsContext.beginPath();
-      graphicsContext.moveTo(660 - 50, 440); // Start at the head center
-      graphicsContext.lineTo(665 - 50, 445); // First point of the triangle (right)
-      graphicsContext.lineTo(655 - 50, 445); // Second point of the triangle (left)
+      graphicsContext.moveTo(640 , 430); // Start at the head center
+      graphicsContext.lineTo(655, 445); // First point of the triangle (right)
+      graphicsContext.lineTo(640 , 440); // Second point of the triangle (left)
       graphicsContext.closePath();
       graphicsContext.fillStyle = "orange";
       graphicsContext.fill();
