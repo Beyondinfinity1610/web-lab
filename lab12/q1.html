@@ -1,142 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="UTF-8" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <title>Creative Canvas Scene</title>
- <style>
- #renderCanvas {
- border: 2px solid black;
- }
- </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creative Canvas Scene</title>
+  <style>
+    #renderCanvas {
+      border: 2px solid black;
+    }
+  </style>
 </head>
 <body>
- <canvas id="renderCanvas" width="800" height="600"></canvas>
- <script>
- const renderTarget = document.getElementById("renderCanvas");
- const graphicsContext = renderTarget.getContext("2d");
- function createEllipse(centerX, centerY, radiusX, radiusY, fillColor)
-{
- graphicsContext.beginPath();
- graphicsContext.ellipse(centerX, centerY, radiusX, radiusY, 0, 0,
-Math.PI * 2);
- graphicsContext.fillStyle = fillColor;
- graphicsContext.fill();
- graphicsContext.stroke();
- }
- function createRectangle(x, y, width, height, fillColor, strokeColor)
-{
- graphicsContext.fillStyle = fillColor;
- graphicsContext.fillRect(x, y, width, height);
- graphicsContext.strokeStyle = strokeColor;
- graphicsContext.strokeRect(x, y, width, height);
- }
- function createTriangle(x1, y1, x2, y2, x3, y3, fillColor) {
- graphicsContext.beginPath();
- graphicsContext.moveTo(x1, y1);
- graphicsContext.lineTo(x2, y2);
- graphicsContext.lineTo(x3, y3);
- graphicsContext.closePath();
- graphicsContext.fillStyle = fillColor;
- graphicsContext.fill();
- graphicsContext.stroke();
- }
- function createSun(centerX, centerY) {
- for (let angle = 0; angle < 360; angle += 15) {
- let radian = (angle * Math.PI) / 180;
- graphicsContext.beginPath();
- graphicsContext.moveTo(centerX, centerY);
- graphicsContext.lineTo(centerX + Math.cos(radian) * 80,
-centerY + Math.sin(radian) * 80);
- graphicsContext.strokeStyle = "yellow";
- graphicsContext.stroke();
- }
+  <canvas id="renderCanvas" width="800" height="600"></canvas>
+  <script>
+    const renderTarget = document.getElementById("renderCanvas");
+    const graphicsContext = renderTarget.getContext("2d");
 
- graphicsContext.beginPath();
- graphicsContext.arc(centerX, centerY, 55, 0, Math.PI * 2);
- graphicsContext.fillStyle = "white";
- graphicsContext.fill();
+    function createEllipse(centerX, centerY, radiusX, radiusY, fillColor) {
+      graphicsContext.beginPath();
+      graphicsContext.ellipse(centerX, centerY, radiusX, radiusY, 0, 0, Math.PI * 2);
+      graphicsContext.fillStyle = fillColor;
+      graphicsContext.fill();
+      graphicsContext.stroke();
+    }
 
- graphicsContext.beginPath();
- graphicsContext.arc(centerX, centerY, 50, 0, Math.PI * 2);
- graphicsContext.fillStyle = "yellow";
- graphicsContext.fill();
- graphicsContext.stroke();
- }
- function createClouds() {
- const cloudPositions = [[100, 500], [130, 510], [150, 490], [650,
-490], [675, 510]];
- const cloudSizes = [20, 17, 23, 20, 15];
+    function createRectangle(x, y, width, height, fillColor, strokeColor) {
+      graphicsContext.fillStyle = fillColor;
+      graphicsContext.fillRect(x, y, width, height);
+      graphicsContext.strokeStyle = strokeColor;
+      graphicsContext.strokeRect(x, y, width, height);
+    }
 
- cloudPositions.forEach((pos, index) => {
- graphicsContext.beginPath();
- graphicsContext.arc(pos[0], pos[1], cloudSizes[index], 0,
-Math.PI * 2);
- graphicsContext.fillStyle = "gray";
- graphicsContext.fill();
- graphicsContext.stroke();
- });
- }
- function createFlower() {
- graphicsContext.beginPath();
- graphicsContext.fillStyle = "green";
- graphicsContext.fillRect(705, 310, 10, 80);
- graphicsContext.ellipse(725, 340, 25, 15, 1, 0, 2 * Math.PI);
- graphicsContext.fill();
- graphicsContext.closePath();
- graphicsContext.beginPath();
- graphicsContext.ellipse(695, 340, 25, 15, -1, 0, 2 * Math.PI);
- graphicsContext.fill();
- graphicsContext.closePath();
- const petalPositions = [[730, 290], [720, 270], [700, 270], [690,
-290], [700, 310], [720, 310]];
- petalPositions.forEach(pos => {
- graphicsContext.beginPath();
- graphicsContext.arc(pos[0], pos[1], 20, 0, 2 * Math.PI);
- graphicsContext.fillStyle = "pink";
- graphicsContext.fill();
- graphicsContext.closePath();
- });
- graphicsContext.beginPath();
- graphicsContext.arc(710, 290, 10, 0, 2 * Math.PI);
- graphicsContext.fillStyle = "yellow";
- graphicsContext.fill();
- graphicsContext.closePath();
- }
- function drawStaticScene() {
- createEllipse(400, 300, 150, 100, "lightblue");
- createRectangle(50, 250, 150, 150, "orange", "blue");
- createTriangle(50, 250, 125, 150, 200, 250, "red");
- createRectangle(65, 275, 40, 40, "blue", "Blue");
- createRectangle(115, 330, 25, 70, "Brown", "Blue");
- createSun(650, 100);
- createClouds();
- createFlower();
- }
- let boatPosition = 350;
- let movementDirection = 1;
- function drawBoat() {
- graphicsContext.clearRect(boatPosition - 5, 260, 100, 40);
- createEllipse(400, 300, 150, 100, "lightblue");
+    function createTriangle(x1, y1, x2, y2, x3, y3, fillColor) {
+      graphicsContext.beginPath();
+      graphicsContext.moveTo(x1, y1);
+      graphicsContext.lineTo(x2, y2);
+      graphicsContext.lineTo(x3, y3);
+      graphicsContext.closePath();
+      graphicsContext.fillStyle = fillColor;
+      graphicsContext.fill();
+      graphicsContext.stroke();
+    }
 
- graphicsContext.beginPath();
- graphicsContext.moveTo(boatPosition, 270);
- graphicsContext.lineTo(boatPosition + 90, 270);
- graphicsContext.lineTo(boatPosition + 70, 290);
- graphicsContext.lineTo(boatPosition + 20, 290);
- graphicsContext.closePath();
- graphicsContext.fillStyle = "brown";
- graphicsContext.fill();
- graphicsContext.strokeStyle = "blue";
- graphicsContext.stroke();
- boatPosition += movementDirection * 2;
- if (boatPosition > 450 || boatPosition < 270) {
- movementDirection *= -1;
- }
- requestAnimationFrame(drawBoat);
- }
- drawStaticScene();
- drawBoat();
- </script>
+    function createSun(centerX, centerY) {
+      for (let angle = 0; angle < 360; angle += 15) {
+        let radian = (angle * Math.PI) / 180;
+        graphicsContext.beginPath();
+        graphicsContext.moveTo(centerX, centerY);
+        graphicsContext.lineTo(centerX + Math.cos(radian) * 80, centerY + Math.sin(radian) * 80);
+        graphicsContext.strokeStyle = "yellow";
+        graphicsContext.stroke();
+      }
+
+      graphicsContext.beginPath();
+      graphicsContext.arc(centerX, centerY, 55, 0, Math.PI * 2);
+      graphicsContext.fillStyle = "white";
+      graphicsContext.fill();
+
+      graphicsContext.beginPath();
+      graphicsContext.arc(centerX, centerY, 50, 0, Math.PI * 2);
+      graphicsContext.fillStyle = "yellow";
+      graphicsContext.fill();
+      graphicsContext.stroke();
+    }
+
+    function createClouds() {
+      const cloudPositions = [[100, 500], [130, 510], [150, 490], [650, 490], [675, 510]];
+      const cloudSizes = [20, 17, 23, 20, 15];
+
+      cloudPositions.forEach((pos, index) => {
+        graphicsContext.beginPath();
+        graphicsContext.arc(pos[0], pos[1], cloudSizes[index], 0, Math.PI * 2);
+        graphicsContext.fillStyle = "gray";
+        graphicsContext.fill();
+        graphicsContext.stroke();
+      });
+    }
+
+    function createFlower() {
+      graphicsContext.beginPath();
+      graphicsContext.fillStyle = "green";
+      graphicsContext.fillRect(705, 310, 10, 80);
+      graphicsContext.ellipse(725, 340, 25, 15, 1, 0, 2 * Math.PI);
+      graphicsContext.fill();
+      graphicsContext.closePath();
+      graphicsContext.beginPath();
+      graphicsContext.ellipse(695, 340, 25, 15, -1, 0, 2 * Math.PI);
+      graphicsContext.fill();
+      graphicsContext.closePath();
+      const petalPositions = [[730, 290], [720, 270], [700, 270], [690, 290], [700, 310], [720, 310]];
+      petalPositions.forEach(pos => {
+        graphicsContext.beginPath();
+        graphicsContext.arc(pos[0], pos[1], 20, 0, 2 * Math.PI);
+        graphicsContext.fillStyle = "pink";
+        graphicsContext.fill();
+        graphicsContext.closePath();
+      });
+      graphicsContext.beginPath();
+      graphicsContext.arc(710, 290, 10, 0, 2 * Math.PI);
+      graphicsContext.fillStyle = "yellow";
+      graphicsContext.fill();
+      graphicsContext.closePath();
+    }
+
+    function drawStaticScene() {
+      createEllipse(400, 300, 150, 100, "lightblue");
+      createRectangle(50, 250, 150, 150, "orange", "blue");
+      createTriangle(50, 250, 125, 150, 200, 250, "red");
+      createRectangle(65, 275, 40, 40, "blue", "Blue");
+      createRectangle(115, 330, 25, 70, "Brown", "Blue");
+      createSun(650, 100);
+      createClouds();
+      createFlower();
+    }
+
+    let boatPosition = 350;
+    let movementDirection = 1;
+
+    function drawBoat() {
+      graphicsContext.clearRect(boatPosition - 5, 260, 100, 40);
+      createEllipse(400, 300, 150, 100, "lightblue");
+
+      graphicsContext.beginPath();
+      graphicsContext.moveTo(boatPosition, 270);
+      graphicsContext.lineTo(boatPosition + 90, 270);
+      graphicsContext.lineTo(boatPosition + 70, 290);
+      graphicsContext.lineTo(boatPosition + 20, 290);
+      graphicsContext.closePath();
+      graphicsContext.fillStyle = "brown";
+      graphicsContext.fill();
+      graphicsContext.strokeStyle = "blue";
+      graphicsContext.stroke();
+      boatPosition += movementDirection * 2;
+      if (boatPosition > 450 || boatPosition < 270) {
+        movementDirection *= -1;
+      }
+      requestAnimationFrame(drawBoat);
+    }
+
+    // Function to create the duck
+    function createDuck(x, y) {
+      // Body (Yellow circle)
+      createEllipse(x, y, 20, 20, "yellow");
+
+      // Head (Yellow circle)
+      createEllipse(x, y - 25, 15, 15, "yellow");
+
+      // Eye (Small black circle)
+      createEllipse(x + 5, y - 27, 2, 2, "black");
+
+      // Beak (Orange small ellipse)
+      createEllipse(x + 10, y - 20, 6, 3, "orange");
+    }
+
+    drawStaticScene();
+    drawBoat();
+    createDuck(650, 450);  // Position the duck near the right bottom stones
+  </script>
 </body>
 </html>
