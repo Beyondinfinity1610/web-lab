@@ -3,31 +3,81 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ticket Booth</title>
+<title>BMI Calculator</title>
 </head>
 <body>
-<form>
-<label for="adult">Adults ($10 each)</label>
-<input type="number" id="adult" value="0" min="0">
-<br>
-<br>
-<br>
-
-<label for="child">Children ($5 each)</label>
-<input type="number" id="child" value="0" min="0">
-
-<br><br>
-<button type="button" onclick="calculateTotal()">Total</button>
-
-<div id="output" style="margin-top: 10px; font-size: 20px; font- weight 2: bold 3;"></div>
-</form>
-
+<center><table id="table" border="1" cellpadding="5">
+<tr style="text-align: center;">
+<td colspan="2">
+<b>BMI Calculator</b>
+<select name="gender" id="gender">
+<option value="Male">Male</option>
+<option value="Female">Female</option>
+</select>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<div class="text"><b>Enter your Weight:</b></div>
+<span>(in pounds)</span>
+<input type="text" name="" id="weight">
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<div class="text"><b>Enter your Height:</b></div>
+<span>(feet)</span>
+<input type="text" name="" id="feet"><br><br>
+<span>(inches)</span>
+<input type="text" name="" id="inches">
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<center><button id="btn"
+onclick="calc()">Calculate</button></center>
+</td>
+</tr>
+<tr>
+<td>
+<font size="5">YOUR BMI</font>
+</td>
+<td>
+<div type="text" id="result"></div>
+</td>
+</tr>
+</table>
+</center>
+</body>
+</html>
+</body>
 <script>
-function calculateTotal() {
-let a = parseInt(document.getElementById("adult").value) || 0; let c = parseInt(document.getElementById("child").value) || 0; let result = (a * 10) + (c * 5);
-
-document.getElementById("output").innerHTML = `Total: $${result}`;
+function calc(){
+let g = document.getElementById("gender").value;
+let w = parseFloat(document.getElementById("weight").value);
+let hf = parseFloat(document.getElementById("feet").value);
+let hi = parseFloat(document.getElementById("inches").value);
+let totalInches = (hf * 12) + hi;
+let bmi = ((w*703 / (totalInches * totalInches)));
+document.getElementById("result").innerHTML = `${bmi}`
+let status = "";
+if (g === "Female") {
+if (bmi < 17.50) status = "Anorexic";
+else if (bmi >= 17.50 && bmi < 19.10) status = "Underweight";
+else if (bmi >= 19.11 && bmi <= 25.80) status = "Ideal range";
+else if (bmi > 25.81 && bmi <= 27.30) status = "Marginally
+overweight";
+else if (bmi > 27.31 && bmi <= 32.30) status = "Overweight";
+else status = "Very overweight or Obese";
+} else {
+if (bmi < 20.70) status = "Underweight";
+else if (bmi >= 20.71 && bmi <= 26.40) status = "Ideal range";
+else if (bmi > 26.41 && bmi <= 27.80) status = "Marginally
+overweight";
+else if (bmi > 27.81 && bmi <= 31.10) status = "Overweight";
+else status = "Very overweight or Obese";
+}
+alert(`Your BMI is ${bmi}\nWeight Status: ${status}`);
 }
 </script>
-</body>
 </html>

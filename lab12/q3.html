@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Interactive Fruit Sales Dashboard</title>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<style>
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+text-align: center;
+background-color: #f0f0f0;
+}
+.visualization-grid {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+gap: 15px;
+padding: 20px;
+}
+.data-display {
+width: calc(50% - 20px);
+min-width: 320px;
+box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+border-radius: 8px;
+background-color: white;
+}
+</style>
+</head>
+<body>
+<h1>Fruit Sales Performance Visualization</h1>
+<div class="visualization-grid">
+<div id="verticalBarChart" class="data-display"></div>
+<div id="salesTrendLine" class="data-display"></div>
+<div id="salesPieView" class="data-display"></div>
+<div id="salesRingView" class="data-display"></div>
+</div>
+<script>
+const fruitDataset = {
+labels: ["Apple", "Banana", "Orange", "Grapes", "Mango"],
+salesVolume: [20, 35, 30, 15, 25],
+colorPalette: [
+"red",
+"yellow",
+"orange",
+"purple",
+"green"
+]
+};
+function createChartConfiguration(chartType, customOptions = {}) {
+const baseConfig = {
+x: fruitDataset.labels,
+y: fruitDataset.salesVolume,
+type: chartType,
+marker: { color: fruitDataset.colorPalette }
+};
+return { ...baseConfig, ...customOptions };
+}
+function renderChartWithLayout(elementId, traceConfig, layoutConfig) {
+Plotly.newPlot(
+elementId,
+[traceConfig],
+{
+margin: { t: 50, l: 50, r: 20, b: 50 },
+...layoutConfig
+}
+);
+}
+// Bar Chart
+renderChartWithLayout(
+"verticalBarChart",
+createChartConfiguration("bar"),
+{
+title: "Fruit Sales (Bar Chart)",
+xaxis: { title: "Fruit Type" },
+yaxis: { title: "Quantity Sold" }
+}
+);
+// Line Chart
+renderChartWithLayout(
+"salesTrendLine",
+createChartConfiguration("scatter", {
+mode: "lines+markers",
+line: { color: "blue", width: 3 }
+}),
+{
+title: "Fruit Sales Trend (Line Chart)",
+xaxis: { title: "Fruit Type" },
+yaxis: { title: "Quantity Sold" }
+}
+);
+// Pie Chart
+renderChartWithLayout(
+"salesPieView",
+{
+labels: fruitDataset.labels,
+values: fruitDataset.salesVolume,
+type: "pie",
+marker: { colors: fruitDataset.colorPalette }
+},
+{
+title: "Fruit Sales Distribution (Pie Chart)"
+}
+);
+// Donut Chart
+renderChartWithLayout(
+"salesRingView",
+{
+labels: fruitDataset.labels,
+values: fruitDataset.salesVolume,
+type: "pie",
+hole: 0.4,
+marker: { colors: fruitDataset.colorPalette }
+},
+{
+title: "Fruit Sales Distribution (Donut Chart)"
+}
+);
+</script>
+</body>
+</html>
