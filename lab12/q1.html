@@ -106,13 +106,25 @@
     // Duck creation near the right bottom stones, moved 50px left
     function createDuck() {
       // Body (circle)
-      createEllipse(550, 450, 25, 20, "yellow");
+      graphicsContext.beginPath();
+      graphicsContext.arc(650 - 50, 450, 25, 0, Math.PI * 2); // Body circle using arc
+      graphicsContext.fillStyle = "yellow";
+      graphicsContext.fill();
+      graphicsContext.stroke();
 
       // Head (circle)
-      createEllipse(600, 440, 15, 15, "yellow");
+      graphicsContext.beginPath();
+      graphicsContext.arc(650 - 50, 440, 15, 0, Math.PI * 2); // Head circle using arc
+      graphicsContext.fillStyle = "yellow";
+      graphicsContext.fill();
+      graphicsContext.stroke();
 
       // Eye (small circle)
-      createEllipse(655 - 50, 438, 3, 3, "black");
+      graphicsContext.beginPath();
+      graphicsContext.arc(655 - 50, 438, 3, 0, Math.PI * 2); // Eye circle using arc
+      graphicsContext.fillStyle = "black";
+      graphicsContext.fill();
+      graphicsContext.stroke();
 
       // Beak (triangle)
       graphicsContext.beginPath();
