@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Elements</title>
+</head>
+<body>
+
+
+    <h1 id="timerDisplay">0 : 0 : 0</h1>
+    <button id="btnStart">Start</button>
+    <button id="btnStop">Stop</button>
+    <button id="btnReset">Reset</button><br><br>
+
+    <label>Enter Date of Birth:</label> 
+    <input type="date" id="birthDate">
+    <h1 id="calculatedAge"></h1>
+
+    
+    <label>Type Here:</label>
+    <input type="text" id="textInput">
+    <h1 id="keypressCount"></h1>
+
+    <script>
+       
+        function addBreak() {
+            document.body.appendChild(document.createElement("br"));
+        }
+
+       
+        const dynamicTable = document.createElement("table");
+        dynamicTable.setAttribute("border", "1");
+
+        const tableHeaders = ["Column 1", "Column 2", "Column 3"];
+        const headerRow = document.createElement("tr");
+
+        tableHeaders.forEach(headerText => {
+            const cell = document.createElement("td");
+            cell.textContent = headerText;
+            headerRow.appendChild(cell);
+        });
+
+        dynamicTable.appendChild(headerRow);
+
+        const tableData = [
+            ["Row1-1", "Row1-2", "Row1-3"],
+            ["Row2-1", "Row2-2", "Row2-3"]
+        ];
+
+        tableData.forEach(rowValues => {
+            const row = document.createElement("tr");
+            rowValues.forEach(value => {
+                const cell = document.createElement("td");
+                cell.textContent = value;
+                row.appendChild(cell);
+            });
+            dynamicTable.appendChild(row);
+        });
+
+        document.body.appendChild(dynamicTable);
+        addBreak();
+
+      
+        const hoverButton = document.createElement("button");
+        hoverButton.textContent = "Hover Me";
+        hoverButton.style.backgroundColor = "red";
+
+        hoverButton.addEventListener("mouseover", () => {
+            hoverButton.style.backgroundColor = "green";
+        });
+
+        document.body.appendChild(hoverButton);
+        addBreak(); addBreak();
+
+    
+        const focusTextarea = document.createElement("textarea");
+        focusTextarea.setAttribute("placeholder", "Click to focus");
+        focusTextarea.style.backgroundColor = "green";
+
+        focusTextarea.addEventListener("focus", () => {
+            focusTextarea.style.backgroundColor = "yellow";
+            focusTextarea.value = "Hello, welcome!";
+        });
+
+        document.body.appendChild(focusTextarea);
+        addBreak(); addBreak();
+
+    
+        const textInputField = document.createElement("input");
+        textInputField.type = "text";
+        textInputField.id = "textField";
+
+        document.body.appendChild(textInputField);
+
+        const dblClickButton = document.createElement("button");
+        dblClickButton.textContent = "Add to List";
+
+        dblClickButton.addEventListener("dblclick", () => {
+            const newList = document.createElement("ul");
+            const listItem = document.createElement("li");
+
+            listItem.textContent = textInputField.value;
+            textInputField.value = "";
+
+            newList.appendChild(listItem);
+            document.body.appendChild(newList);
+        });
+
+        document.body.appendChild(dblClickButton);
+        addBreak(); addBreak();
+
+      
+        const inputCounter = document.createElement("input");
+        const displayCounter = document.createElement("input");
+
+        let keyPresses = 0;
+
+        inputCounter.addEventListener("input", () => {
+            keyPresses++;
+            displayCounter.value = keyPresses;
+        });
+
+        displayCounter.readOnly = true;
+
+        document.body.appendChild(inputCounter);
+        document.body.appendChild(displayCounter);
+        addBreak(); addBreak();
+
+       
+        const btnStart = document.getElementById("btnStart");
+        const btnStop = document.getElementById("btnStop");
+        const btnReset = document.getElementById("btnReset");
+        const timerDisplay = document.getElementById("timerDisplay");
+
+        let seconds = 0, minutes = 0, hours = 0;
+        let timerInterval;
+
+        btnStart.addEventListener("click", () => {
+            if (!timerInterval) {
+                timerInterval = setInterval(() => {
+                    seconds++;
+                    if (seconds === 60) {
+                        seconds = 0;
+                        minutes++;
+                    }
+                    if (minutes === 60) {
+                        minutes = 0;
+                        hours++;
+                    }
+                    timerDisplay.textContent = `${hours} : ${minutes} : ${seconds}`;
+                }, 1000);
+            }
+        });
+
+        btnStop.addEventListener("click", () => {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        });
+
+        btnReset.addEventListener("click", () => {
+            seconds = minutes = hours = 0;
+            timerDisplay.textContent = "0 : 0 : 0";
+            clearInterval(timerInterval);
+            timerInterval = null;
+        });
+
+        const birthDate = document.getElementById("birthDate");
+        const calculatedAge = document.getElementById("calculatedAge");
+
+        birthDate.addEventListener("mouseover", () => {
+            const dob = new Date(birthDate.value);
+            const today = new Date();
+
+            let age = today.getFullYear() - dob.getFullYear();
+            const monthDifference = today.getMonth() - dob.getMonth();
+            if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < dob.getDate())) {
+                age--;
+            }
+            calculatedAge.textContent = age;
+        });
+
+    
+        const textInput = document.getElementById("textInput");
+        const keypressCount = document.getElementById("keypressCount");
+
+        let totalKeypresses = 0;
+
+        textInput.addEventListener("input", () => {
+            totalKeypresses++;
+            keypressCount.textContent = totalKeypresses;
+        });
+    </script>
+</body>
+</html>

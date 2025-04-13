@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+</head>
+<body>
+    <label>Enter Date of Birth:</label>
+<input type="date" id="birthDate">
+<h1 id="calculatedAge"></h1>
+
+
+    <p id="display"><span id="min">00</span>:<span id="sec">00</span></p>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <button id="reset">Reset</button>
+
+
+    <br>
+    <br><br>
+    <label>Type Here:</label>
+<input type="text" id="textInput">
+<h1 id="keypressCount">Characters: 0</h1>
+</body>
+<script>
+
+const textInput = document.getElementById("textInput");
+    const keypressCount = document.getElementById("keypressCount");
+
+    textInput.addEventListener("input", () => {
+        keypressCount.textContent = `Characters: ${textInput.value.length}`;
+    });
+
+
+const birthDate = document.getElementById("birthDate");
+    const calculatedAge = document.getElementById("calculatedAge");
+
+    birthDate.addEventListener("mouseover", () => {
+        const dob = new Date(birthDate.value);
+        const today = new Date();
+
+        let age = today.getFullYear() - dob.getFullYear();
+        const monthDiff = today.getMonth() - dob.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+            age--;
+        }
+        calculatedAge.textContent = `Age: ${age}`;
+    });
+
+    let sec = 0, min = 0, interval = null;
+    const secSpan = document.getElementById('sec');
+    const minSpan = document.getElementById('min');
+
+    function updateDisplay() {
+        secSpan.innerText = String(sec).padStart(2, '0');
+        minSpan.innerText = String(min).padStart(2, '0');
+    }
+
+    document.getElementById('start').addEventListener('click', () => {
+        if (interval) return; 
+        interval = setInterval(() => {
+            sec++;
+            if (sec === 60) {
+                sec = 0;
+                min++;
+            }
+            updateDisplay();
+        }, 1000);
+    });
+
+    document.getElementById('stop').addEventListener('click', () => {
+        clearInterval(interval);
+        interval = null;
+    });
+
+    document.getElementById('reset').addEventListener('click', () => {
+        clearInterval(interval);
+        interval = null;
+        sec = 0;
+        min = 0;
+        updateDisplay();
+    });
+
+    updateDisplay(); 
+</script>
+</html>

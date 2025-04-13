@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>23BCE1785 Web Dev Lab EXCERCISE MAP</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ece9e6, #ffffff);
+      color: #333;
+    }
+
+    header {
+      background: #4e54c8;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+
+    .lab {
+      background: white;
+      margin: 1rem 0;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+
+    .lab:hover {
+      transform: scale(1.01);
+    }
+
+    .lab-title {
+      padding: 1rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f0f0f0;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .questions {
+      display: none;
+      padding: 1rem;
+      border-top: 1px solid #ddd;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .lab.open .questions {
+      display: block;
+    }
+
+    .questions a {
+      display: inline-block;
+      margin: 0.25rem 0.5rem 0.5rem 0;
+      padding: 0.5rem 1rem;
+      background: #4e54c8;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.2s ease-in-out;
+    }
+
+    .questions a:hover {
+      background: #5d63e1;
+    }
+
+    .lab-title i {
+      transition: transform 0.3s ease;
+    }
+
+    .lab.open .lab-title i {
+      transform: rotate(90deg);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🌐 Web Development Lab </h1>
+    <h2>S.Thejeshwaar 23BCE1785</h2>
+    <p>  LAB 13-15 IN REACT PORJECTS AND LABS 1–12   | Click to expand each lab and access questions</p>
+  </header>
+
+  <div class="container">
+    <!-- Generated Lab Sections -->
+
+    <!-- Lab 1 -->
+    <div class="lab">
+      <div class="lab-title" onclick="toggleLab(this)">
+        Lab 1 <i class="fas fa-chevron-right"></i>
+      </div>
+      <div class="questions">
+        <a href="lab1/q1/lab1.html">Q1</a>
+        <a href="lab1/q2/greeting.html">Q2</a>
+      </div>
+    </div>
+
+    <!-- Lab 2 -->
+    <div class="lab">
+      <div class="lab-title" onclick="toggleLab(this)">
+        Lab 2 <i class="fas fa-chevron-right"></i>
+      </div>
+      <div class="questions">
+        <a href="lab2/q1.html">Q1</a>
+        <a href="lab2/q2.html">Q2</a>
+        <a href="lab2/q3.html">Q3</a>
+        <a href="lab2/q4.html">Q4</a>
+        <a href="lab2/q5.html">Q5</a>
+      </div>
+    </div>
+
+    <!-- Lab 3 -->
+    <div class="lab">
+      <div class="lab-title" onclick="toggleLab(this)">
+        Lab 3 <i class="fas fa-chevron-right"></i>
+      </div>
+      <div class="questions">
+        <a href="lab3/q1.html">Q1</a>
+        <a href="lab3/Q2.HTML">Q2</a>
+      </div>
+    </div>
+
+    <!-- Lab 4 -->
+    <div class="lab">
+      <div class="lab-title" onclick="toggleLab(this)">
+        Lab 4 <i class="fas fa-chevron-right"></i>
+      </div>
+      <div class="questions">
+        <a href="lab4/q1.html">Q1</a>
+        <a href="lab4/q2.html">Q2</a>
+        <a href="lab4/q3.html">Q3</a>
+      </div>
+    </div>
+
+    <!-- Lab 5 -->
+    <div class="lab">
+      <div class="lab-title" onclick="toggleLab(this)">
+        Lab 5 <i class="fas fa-chevron-right"></i>
+      </div>
+      <div class="questions">
+        <a href="lab5/q1/q1/resume.html">Q1 - Resume</a>
+        <a href="lab5/q1/q2/resume.html">Q2 - Resume</a>
+      </div>
+    </div>
+
+    <!-- Lab 6 -->
+    <div class="lab">
+      <div class="lab-title" onclick="toggleLab(this)">
+        Lab 6 <i class="fas fa-chevron-right"></i>
+      </div>
+      <div class="questions">
+        <a href="lab6/css.html">CSS Basics</a>
+        <a href="lab6/lab6q2.html">Q2</a>
+        <a href="lab6/lab6q3.html">Q3</a>
+      </div>
+    </div>
+
+    <!-- Lab 7 -->
+    <div class="lab">
+      <div class="lab-title" onclick="toggleLab(this)">
+        Lab 7 <i class="fas fa-chevron-right"></i>
+      </div>
+      <div class="questions">
+        <a href="lab7/q1.html">Q1</a>
+        <a href="lab7/q2.html">Q2</a>
+      </div>
+    </div>
+
+    <!-- Lab 8 -->
+    <div class="lab">
+      <div class="lab-title" onclick="toggleLab(this)">
+        Lab 8 <i class="fas fa-chevron-right"></i>
+      </div>
+      <div class="questions">
+        <a href="lab8/q1.html">Q1</a>
+        <a href="lab8/q2.html">Q2</a>
+        <a href="lab8/q3.html">Q3</a>
+        <a href="lab8/q4.html">Q4</a>
+        <a href="lab8/q5.html">Q5</a>
+        <a href="lab8/q6.html">Q6</a>
+      </div>
+    </div>
+
+    <!-- Lab 9 -->
+    <div class="lab">
+      <div class="lab-title" onclick="toggleLab(this)">
+        Lab 9 <i class="fas fa-chevron-right"></i>
+      </div>
+      <div class="questions">
+        <a href="lab9/q1.html">Q1</a>
+        <a href="lab9/q2.html">Q2</a>
+        <a href="lab9/q3.html">Q3</a>
+      </div>
+    </div>
+
+    <!-- Lab 10 -->
+    <div class="lab">
+      <div class="lab-title" onclick="toggleLab(this)">
+        Lab 10 <i class="fas fa-chevron-right"></i>
+      </div>
+      <div class="questions">
+        <a href="lab10/q1.html">Q1</a>
+        <a href="lab10/q.html">Q2</a>
+        <a href="lab10/q2.html">Q3</a>
+      </div>
+    </div>
+
+    <!-- Lab 11 -->
+    <div class="lab">
+      <div class="lab-title" onclick="toggleLab(this)">
+        Lab 11 <i class="fas fa-chevron-right"></i>
+      </div>
+      <div class="questions">
+        <a href="lab11/q1.html">Q1 & Q2(order may differ but everything is there)</a>
+         <a href="lab11/q3.html">Q3</a>
+      </div>
+    </div>
+
+    <!-- Lab 12 -->
+    <div class="lab">
+      <div class="lab-title" onclick="toggleLab(this)">
+        Lab 12 <i class="fas fa-chevron-right"></i>
+      </div>
+      <div class="questions">
+        <a href="lab12/q1.html">Q1 & Q2(Animation)</a>
+        <a href="lab12/q2.html">Q3</a>
+        <a href="lab12/q3.html">Q4</a>
+        <a href="lab12/q5.html">Q5</a>
+
+      </div>
+    </div>
+    <!-- React Projects -->
+<div class="lab">
+  <div class="lab-title" onclick="toggleLab(this)">
+    React Projects <i class="fas fa-chevron-right"></i>
+  </div>
+  <div class="questions">
+    <a href="https://lab15-xi.vercel.app/" target="_blank">LAB 15</a>
+    <a href="https://lab14-tan.vercel.app/" target="_blank">LAB 14</a>
+    <a href="https://lab13-ten.vercel.app/" target="_blank">LAB 13</a>
+  </div>
+</div>
+
+
+  </div>
+
+  <script>
+    function toggleLab(el) {
+      const lab = el.parentElement;
+      lab.classList.toggle('open');
+    }
+  </script>
+
+</body>
+</html>

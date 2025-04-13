@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Untitled</title>
+<style>
+body {
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: #eaeaea;
+}
+canvas {
+background: white;
+border-radius: 50%;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+</style>
+</head>
+<body>
+<canvas id="dialCanvas" width="300" height="300"></canvas>
+<script>
+const dial = document.getElementById("dialCanvas");
+const context = dial.getContext("2d");
+const center = dial.width / 2;
+function refreshClock() {
+context.clearRect(0, 0, dial.width, dial.height);
+context.save();
+context.translate(center, center);
+renderDial(context, center);
+markNumbers(context, center);
+drawTimeHands(context, center);
+context.restore();
+}
+function renderDial(ctx, radius) {
+ctx.beginPath();
+ctx.arc(0, 0, radius - 5, 0, 2 * Math.PI);
+ctx.fillStyle = "white";
+ctx.fill();
+ctx.lineWidth = 5;
+ctx.strokeStyle = "black";
+ctx.stroke();
+ctx.beginPath();
+ctx.arc(0, 0, 5, 0, 2 * Math.PI);
+ctx.fillStyle = "black";
+ctx.fill();
+}
+function markNumbers(ctx, radius) {
+ctx.font = "18px Arial";
+ctx.textAlign = "center";
+ctx.textBaseline = "middle";
+for (let i = 1; i <= 12; i++) {
+let angle = (i * Math.PI) / 6;
+let xPos = (radius - 30) * Math.sin(angle);
+let yPos = -(radius - 30) * Math.cos(angle);
+ctx.fillText(i, xPos, yPos);
+}
+}
+function drawTimeHands(ctx, radius) {
+const currentTime = new Date();
+const hr = currentTime.getHours() % 12;
+const min = currentTime.getMinutes();
+const sec = currentTime.getSeconds();
+drawPointer(ctx, (hr * Math.PI) / 6 + (min * Math.PI) / 360,
+radius * 0.5, 6);
+drawPointer(ctx, (min * Math.PI) / 30 + (sec * Math.PI) / 1800,
+radius * 0.7, 4);
+drawPointer(ctx, (sec * Math.PI) / 30, radius * 0.9, 2, "red");
+}
+function drawPointer(ctx, angle, length, thickness, shade = "black") {
+ctx.beginPath();
+ctx.lineWidth = thickness;
+ctx.lineCap = "round";
+ctx.strokeStyle = shade;
+ctx.moveTo(0, 0);
+ctx.rotate(angle);
+ctx.lineTo(0, -length);
+ctx.stroke();
+ctx.rotate(-angle);
+}
+function tickClock() {
+refreshClock();
+setTimeout(tickClock, 1000);
+}
+tickClock();
+</script>
+</body>
+</html>

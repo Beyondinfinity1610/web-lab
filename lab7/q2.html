@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-image: url('/api/placeholder/1920/1080');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            background: linear-gradient(to right, 
+                red, orange, yellow, green, blue, indigo, violet);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            padding: 20px;
+            font-size: 3em;
+        }
+
+        .pet-description {
+            column-count: 3;
+            column-gap: 40px;
+            line-height: 30pt;
+            padding: 20px;
+            color: #333;
+            background-color: rgba(255, 255, 255, 0.9);
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        .ball-container {
+            margin: 50px;
+            height: 300px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        @keyframes ballPlay {
+            0% {
+                transform: translateX(0) translateY(0) rotate(0deg) skew(0deg);
+            }
+            25% {
+                transform: translateY(-100px) rotate(90deg) skew(10deg);
+            }
+            50% {
+                transform: translateY(0) rotate(180deg) skew(0deg);
+            }
+            75% {
+                transform: translateX(0px) translateY(-100px) rotate(270deg) skew(-10deg);
+            }
+            100% {
+                transform: translateX(0) translateY(0) rotate(360deg) skew(0deg);
+            }
+        }
+
+        .ball {
+            animation: ballPlay 4s infinite ease-in-out;
+            
+        }
+        .ball-container img, .ball-container svg {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 20px;
+}
+  
+
+    </style>
+</head>
+<body>
+    <h1>Our Lovely Pets</h1>
+    
+    <div class="pet-description">
+        <p>Dogs are known as man's best friend, offering unconditional love and loyalty. They come in various breeds, each with unique characteristics and personalities. From tiny Chihuahuas to massive Great Danes, dogs make wonderful companions for people of all ages.</p>
+        
+        <p>Cats are elegant and independent pets that bring grace and charm to any household. Their mysterious nature and playful antics make them fascinating companions. Whether they're napping in a sunbeam or chasing toys, cats provide endless entertainment.</p>
+        
+        <p>Birds add color and music to our homes with their beautiful songs and vibrant feathers. From parakeets to cockatoos, these intelligent creatures can form strong bonds with their owners and even learn to mimic human speech.</p>
+    </div>
+
+    <div class="ball-container">
+        <img src="./Screenshot 2025-01-20 161512.png"  width="200px">
+        
+            
+        <svg class="ball" width="50" height="100" viewBox="0 0 100 100 ">
+            <circle cx="50" cy="50" r="40" fill="red" />
+            <line x1="10" y1="50" x2="90" y2="50" stroke="white" stroke-width="2" />
+            <line x1="50" y1="10" x2="50" y2="90" stroke="white" stroke-width="2" />
+        </svg>
+  <script>
+    context.strokeStyle='color';
+    context.strokeRect(x, y, width, height);
+    context.ellipse(x,y,radiux,raisuy,start,end)
+    
+  </script>
+        
+    </div>
+    
+</body>
+
+</html>

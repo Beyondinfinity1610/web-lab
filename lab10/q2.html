@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: white">
+    <div style="margin: 50px; background-color: limegreen; padding: 5px; width: 40%; height: 1000px;">
+    <center><h1>Grocery Order List</h1></center>
+    <br>
+    <form onsubmit="saveDetails(event)">
+        <label for="name"><b>Customer Name</b></label>
+        <br><br><br>
+        <input type="text" name="name" id="fn" style="border-radius: 10px; padding: 5px;"> 
+        <input type="text" name="lname" id="ln" style="border-radius: 10px; padding: 5px;">
+        <br><br><br><br>
+        <label for="pno"><b>Phone Number</b></label>
+        <br><br><br>
+        <input type="text" id="pno" style="border-radius: 10px; padding: 5px;">
+        <br><br><br>
+        <label for="email"><b>Email</b></label>
+        <br><br><br>
+        <input type="email" name="email" id="em" style="border-radius: 10px; padding: 5px;">
+        <br><br><br><br>
+        <hr style="background-color: black; color: black; height: 2px;">
+        <h1>Products</h1>
+        <div style="width: 85%; display: flex-5 ; flex-direction: column; align-items: flex-start; justify-content: space-evenly;" id="container">
+            <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                <img src="./download.jpg" height="50px" width="50px" alt="">
+                <input type="checkbox" name="apple" id="apple" style="margin-left: 20px; border-radius: 10px; padding: 5px;">
+                <label for="apple" style="margin-left: 10px;"><b>Apple &nbsp; 10$</b></label>
+                <input type="number" id="ak" style="border-radius: 10px; margin-left: 20px; width: 40px; padding: 5px;"> <b>&nbsp; KG</b>
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                <img src="./OIP.jpg" height="50px" width="50px" alt="">
+                <input type="checkbox" name="b" id="b" style="margin-left: 20px; border-radius: 10px; padding: 5px;">
+                <label for="b" style="margin-left: 10px;"><b>Banana &nbsp; 5$</b></label>
+                <input type="number" id="bk" style="border-radius: 10px; margin-left: 20px; width: 40px; padding: 5px;"> <b>&nbsp; KG</b>
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                <img src="./download (1).jpg" height="50px" width="50px" alt="">
+                <input type="checkbox" name="ava" id="ava" style="margin-left: 20px; border-radius: 10px; padding: 5px;">
+                <label for="ava" style="margin-left: 10px;"><b>Avocado &nbsp; 7$</b></label>
+                <input type="number" id="avk" style="border-radius: 10px; margin-left: 20px; width: 40px; padding: 5px;"> <b>&nbsp; KG</b>
+            </div>
+            
+        </div>
+        <center><button type="submit" style="border-radius: 10px; padding: 20px; background-color: green; color: white; margin: 30px; width: 300px;">SUBMIT</button></center>
+       
+    </form>
+</div>
+
+    <script>
+        function saveDetails(event) {
+            event.preventDefault();
+
+            const details = {
+                name: document.getElementById('fn').value + " " + document.getElementById('ln').value,
+                phone: document.getElementById('pno').value,
+                email: document.getElementById('em').value,
+                products: [
+                    {
+                        name: 'Apple',
+                        checked: document.getElementById('apple').checked,
+                        amount: document.getElementById('ak').value,
+                        price: 10
+                    },
+                    {
+                        name: 'Banana',
+                        checked: document.getElementById('b').checked,
+                        amount: document.getElementById('bk').value,
+                        price: 5
+                    },
+                    {
+                        name: 'Avocado',
+                        checked: document.getElementById('ava').checked,
+                        amount: document.getElementById('avk').value,
+                        price: 7
+                    }
+                ]
+            };
+
+            localStorage.setItem('orderDetails', JSON.stringify(details));
+            window.location.href = "receipt.html";
+        }
+    </script>
+</body>
+</html>

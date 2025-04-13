@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr>
+                <th>P-Id</th>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody id="content">
+        </tbody>
+    </table>
+    <br><br><br>
+    <h1>Age filter</h1>
+    <label for="low">LOWER LIMIT</label>
+    
+    <input type="number" value="0" id="low">
+    <br><br><br><br>
+    <label for="high">HIGHER LIMIT</label>
+    <input type="number" value="0" id="high">
+    <br><br><br>
+    <button onclick="filter()">filter</button>
+    <br><br><br>
+    <h1>Search</h1>
+    <label for="search">Search id</label><br>
+    <input type="number" id="search">
+    <button onclick="search()">Search</button>
+
+</body>
+<script>
+    let pats = [
+        {pid: 1, name: 'Alen', age: 39},
+        {pid: 2, name: 'Deena', age: 47},
+        {pid: 3, name: 'Diana', age: 21},
+        {pid: 4, name: 'Jack', age: 54},
+        {pid: 5, name: 'Jain', age: 23},
+        {pid: 6, name: 'Kelvin', age: 61},
+        {pid: 7, name: 'Louis', age: 69},
+        {pid: 8, name: 'Rex', age: 49},
+    ];
+
+    function sortp(pats) {
+        return pats.sort((a, b) => b.age - a.age);
+    }
+
+    let s = sortp([...pats]);
+    s.forEach(e => {
+        document.getElementById("content").innerHTML += `<tr><td>${e.pid}</td><td>${e.name}</td><td>${e.age}</td></tr>`;
+    });
+
+    function search() {
+        let se = document.getElementById("search").value;
+        let found = pats.some(pat => pat.pid == se);
+
+        if(found) {
+            alert(`${se} id is present`);
+        } else {
+            alert(`${se} id is not present`);
+        }
+    }
+
+    function filter() {
+        let l = parseInt(document.getElementById("low").value);
+        let h = parseInt(document.getElementById("high").value);
+        document.getElementById("content").innerHTML = ``;
+
+        pats.forEach(pat => {
+            if (pat.age > l && pat.age < h) {
+                document.getElementById("content").innerHTML += `<tr><td>${pat.pid}</td><td>${pat.name}</td><td>${pat.age}</td></tr>`;
+            }
+        });
+    }
+
+</script>
+</html>

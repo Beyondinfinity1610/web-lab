@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt</title>
+</head>
+<body>
+    <h1>Receipt</h1>
+    <div id="receipt"></div>
+
+    <script>
+        const details = JSON.parse(localStorage.getItem('orderDetails'));
+
+        if (details) {
+            let receiptHTML = `
+                <p><b>Customer Name:</b> ${details.name}</p>
+                <p><b>Phone Number:</b> ${details.phone}</p>
+                <p><b>Email:</b> ${details.email}</p>
+                <h2>Products</h2>
+                <ul>
+            `;
+
+            let totalPrice = 0;
+
+            details.products.forEach(product => {
+                if (product.checked) {
+                    const productTotal = product.amount * product.price;
+                    totalPrice += productTotal;
+                    receiptHTML += `<li>${product.name}: ${product.amount} KG <br> price: ${product.price} per KG = $${productTotal}</li>`;
+                }
+            });
+
+            receiptHTML += `</ul><h2>Total Price: $${totalPrice}</h2>`;
+            document.getElementById('receipt').innerHTML = receiptHTML;
+        } else {
+            document.getElementById('receipt').innerHTML = '<p>No order details found.</p>';
+        }
+    </script>
+</body>
+</html>
