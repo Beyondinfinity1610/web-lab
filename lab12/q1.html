@@ -103,6 +103,28 @@
       graphicsContext.closePath();
     }
 
+    // Duck creation near the right bottom stones, moved 50px left
+    function createDuck() {
+      // Body (circle)
+      createEllipse(650 - 50, 450, 25, 20, "yellow");
+
+      // Head (circle)
+      createEllipse(650 - 50, 440, 15, 15, "yellow");
+
+      // Eye (small circle)
+      createEllipse(655 - 50, 438, 3, 3, "black");
+
+      // Beak (triangle)
+      graphicsContext.beginPath();
+      graphicsContext.moveTo(660 - 50, 440); // Start at the head center
+      graphicsContext.lineTo(665 - 50, 445); // First point of the triangle (right)
+      graphicsContext.lineTo(655 - 50, 445); // Second point of the triangle (left)
+      graphicsContext.closePath();
+      graphicsContext.fillStyle = "orange";
+      graphicsContext.fill();
+      graphicsContext.stroke();
+    }
+
     function drawStaticScene() {
       createEllipse(400, 300, 150, 100, "lightblue");
       createRectangle(50, 250, 150, 150, "orange", "blue");
@@ -138,24 +160,9 @@
       requestAnimationFrame(drawBoat);
     }
 
-    // Function to create the duck
-    function createDuck(x, y) {
-      // Body (Yellow circle)
-      createEllipse(x, y, 20, 20, "yellow");
-
-      // Head (Yellow circle)
-      createEllipse(x, y - 25, 15, 15, "yellow");
-
-      // Eye (Small black circle)
-      createEllipse(x + 5, y - 27, 2, 2, "black");
-
-      // Beak (Orange small ellipse)
-      createEllipse(x + 10, y - 20, 6, 3, "orange");
-    }
-
     drawStaticScene();
     drawBoat();
-    createDuck(650, 450);  // Position the duck near the right bottom stones
+    createDuck(); // Call to draw the duck
   </script>
 </body>
 </html>
